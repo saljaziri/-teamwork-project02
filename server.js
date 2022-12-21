@@ -40,7 +40,7 @@ const authRoute = require("./routes/auth");
 const userProfileRoute = require("./routes/userProfile");
 const dreamClubRoute = require('./routes/dreamClubs');
 const indexRoute = require('./routes/index')
-const ClubRoute = require('./routes/Clubs');
+const ClubRoute = require('./routes/clubs');
 const UserProfile = require("./models/UserProfile");
 app.use("/", indexRoute);
 app.use("/", playerRoute);
