@@ -1,25 +1,35 @@
 const mongoose = require('mongoose');
 const nationalities = require('../helper/countriesConfig');
-const ClubSchema = mongoose.Schema({
+const popularites = require('../helper/popularityConfig');
+const clubSchema = mongoose.Schema({
+    clubImage: {
+        type: String,
+        default: ''
+      },
+
     name: String,
-    
+    popularity: 
+    {
+      type: String,
+      required: true,
+      enum : popularites,
+    },
     nationality: {
         type: String,
         required: true,
         enum : nationalities,
       },
-    image: String,
-    
-    popularity: Number,
-    user: Object,
 
-},
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]},
-    {timestamp: true
+     
+user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+}},
 
-})
+    {timestamps: true
 
-const Club = mongoose.model('Club', ClubSchema);
+    })
+
+
+const Club = mongoose.model('Club', clubSchema);
 module.exports = Club;

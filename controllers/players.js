@@ -28,6 +28,10 @@ exports.player_create_get = (req, res) =>{
 exports.player_create_post = (req,res) =>{
     console.log(req.body);
     let player = new Player (req.body);
+    if (req.file != null) {
+
+        player.playerImage = __imagedir + "/" + req.file.filename;
+      }
     player.save()
     .then(() =>{
         res.redirect('/player/index');
@@ -51,7 +55,8 @@ exports.player_detail_get = (req, res) =>{
 
 exports.player_edit_get = (req, res) =>{
     Player.findById(req.query.id)
-    .populate('user','nationality')
+    .populate('user')
+    .populate('nationality')
     .then((player) => {
         res.render('player/edit', {player, nationalities, playerPositions});
     })

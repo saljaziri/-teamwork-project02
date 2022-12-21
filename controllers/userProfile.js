@@ -6,9 +6,9 @@ const fs = require("fs");
 
 exports.index_get = (req, res) => {
   UserProfile.find()
-    .populate("user", "nationality")
-    .then((userProfile) => {
-      res.render("userProfile/index", { userProfile, moment });
+    .populate("user")
+    .then((userProfiles) => {
+      res.render("userProfile/index", { userProfiles, moment });
     })
     .catch((err) => {
       res.send("Please try again later");
@@ -17,11 +17,13 @@ exports.index_get = (req, res) => {
 
 exports.show_get = function (req, res) {
   UserProfile.findById(req.query.id)
-    .populate("user, nationality")
+    .populate("user")
+    .populate("nationality")
     .then((userProfile) => {
       res.render("userProfile/detail", { userProfile, moment });
     })
     .catch((err) => {
+      console.log(err)
       res.send("Please try again later");
     });
 };
@@ -43,6 +45,7 @@ exports.edit_get = function (req, res) {
         console.log(userProfile._id);
         UserProfile.findById(userProfile._id.toString())
           .populate("nationality")
+          .populate("user")
           .then((userProfile) => {
             res.render("userProfile/edit", { userProfile, nationalities });
           })
@@ -57,8 +60,7 @@ exports.edit_get = function (req, res) {
 };
 
 exports.update_put = function (req, res) {
-  console.log(req.body.user);
-  console.log(req.file.filename);
+
 
   let userProfile = new UserProfile();
   userProfile = req.body;
@@ -83,7 +85,7 @@ exports.update_put = function (req, res) {
   req.session.userProfile = userProfile;
   UserProfile.findByIdAndUpdate(req.body.id, userProfile)
     .then(() => {
-      res.redirect("/userProfile/index");
+      res.redirect("/");
     })
     .catch((err) => {
       res.send("Please try again later");
@@ -118,7 +120,7 @@ exports.create_post = (req, res) => {
   userProfile
     .save()
     .then(() => {
-      res.redirect("/userProfile/index");
+      res.redirect("/");
     })
     .catch((err) => {
       console.log(err);
@@ -130,7 +132,7 @@ exports.delete_get = (req, res) => {
   console.log(req.query.id);
   UserProfile.findOneAndDelete({ _id: req.params.id })
     .then(() => {
-      res.redirect("/userProfile/index");
+      res.redirect("/");
     })
     .catch((err) => {
       res.send("Please try again later");

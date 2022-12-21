@@ -1,13 +1,14 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const salt = 10;
-const roles = require('../helper/rolesConfig');
+const roles = require("../helper/rolesConfig");
 let passport = require("../helper/ppConfig");
 const UserProfile = require("../models/UserProfile");
 const { session } = require("../helper/ppConfig");
+const moment = require("moment");
 
 exports.signup_get = (req, res) => {
-  res.render("auth/signup", {roles});
+  res.render("auth/signup");
 };
 
 exports.signup_post = (req, res) => {
@@ -27,7 +28,18 @@ exports.signup_post = (req, res) => {
     });
 };
 exports.signin_get = (req, res) => {
-  res.render("auth/signin" );
+  res.render("auth/signin");
+};
+
+exports.index_get = (req, res) => {
+  User.find()
+    .then((users) => {
+      res.render("auth/index", { users, moment });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 };
 
 exports.signin_post = passport.authenticate("local", {
@@ -35,45 +47,47 @@ exports.signin_post = passport.authenticate("local", {
   failureRedirect: "/auth/signin",
 });
 
-// exports.getUserProfile = (req, res)=>{
-//   UserProfile.exists({ user: req.user._id }, function (err, userProfile) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("Result :", userProfile); // false
-//       if (userProfile === null) {
-//         console.log("not exist");
-//         const userProfile = null;
-//         console.log(res.locals);
-//         console.log(req.session);
-//         res.locals.userProfile = userProfile;
-//         console.log(res.locals)  
-   
-
-//       } else {
-//         console.log("exists");
-//         UserProfile.findById(userProfile._id.toString())
-//         .then((userProfile)=>{
-//           console.log(res.locals);
-//           console.log(req.session);
-//           res.locals.userProfile = userProfile;
-//           console.log(res.locals)  
-//         })
-//         .catch(err=>{
-//           console.log(err);
-//         })
-
-//       }
-//     }
-//   });
-//   res.redirect("/");
-// }
-
 exports.logout_get = (req, res) => {
-  req.logout( (err)=> {
+  req.logout((err) => {
     if (err) {
       return next(err);
     }
     res.redirect("/auth/signin");
   });
+};
+
+exports.show_get = function (req, res) {
+  User.findById(req.query.id)
+    .then((user) => {
+      res.render("auth/detail", { user, moment });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send("Please try again later");
+    });
+};
+
+exports.edit_get = function (req, res) {
+  User.findById(req.query.id)
+    .then((user) => {
+      res.render("auth/edit", { user, roles });
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.send("Please try again later");
+    });
+};
+
+exports.update_put = function (req, res) {
+  let user = new User(req.body);
+
+ 
+  User.findByIdAndUpdate(req.body.id, user)
+    .then(() => {
+      res.redirect("/auth/index");
+    })
+    .catch((err) => {
+      res.send("Please try again later");
+    });
 };

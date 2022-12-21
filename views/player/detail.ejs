@@ -32,6 +32,7 @@
               </div>
               <div class="member-info">
                 <h4 id="h4"><%= player.name %></h4>
+                <p id="fontSize">  <img id="indexImageSize" src="../img/<%= player.playerImage %>"/></p>
                 <p id="fontSize"> Nationality: <%= player.nationality %></p>
                 <p id="fontSize"> Position: <%= player.playerPosition %> </p>
                 <p id="fontSize"> Kit Number: <%= player.kitNumber %> </p>
@@ -39,17 +40,7 @@
                 <p id="fontSize"> Created At: <%= moment(player.createdAt).fromNow() %> </p>
                 <p id="fontSize"> Updated At: <%= moment(player.updatedAt).fromNow() %> </p>
                 <p id="fontSize"> Created by: <%=currentUser.firstName%> <%=currentUser.lastName%> </p>
-                <div class="col-md-6 form-group">
-                    <input
-                      type="hidden"
-                      name="id"
-                      class="form-control"
-                      id="id"
-                      placeholder="id"
-                      value="<%=currentUser._id%>"
-                      required
-                    />
-                  </div>
+                
               </div>
             </div>
           </div>

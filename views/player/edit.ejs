@@ -23,10 +23,22 @@
         <div class="row mt-5">
           <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
             <form
+            enctype="multipart/form-data"
               action="/player/update?_method=PUT"
               method="POST"
               class="php-email-form">
               <div class="row">
+                <div class="member-img text-center">
+                  <% if(player.playerImage =="" ) {  %>
+                    <img class="img-fluid col-md-4 form-group" id="playerImage" name="playerImage" src="https://via.placeholder.com/1800"/>
+    
+                 <% }else{ %>
+                  <img class="img-fluid col-md-4 form-group" id="playerImage" name="playerImage" src="../img/<%=player.playerImage%>" />
+                  <input type="hidden" id="previousPlayerImage" name="previousPlayerImage" value="<%=player.playerImage%>" />
+    
+                <%  }%>
+                  <input type="file" id="playerImageFile" name="playerImageFile" style="display: none;" />
+                </div>
                 <div class="col-md-6 form-group">
                   <input
                     type="text"
@@ -37,6 +49,7 @@
                   value=" <%= player.name %>"
                   />
                 </div>
+               
                 
                   <div class="col-md-6 form-group mt-3 mt-md-0">
                     <select name="nationality" id="nationality" class="form-control">
@@ -79,7 +92,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <input
-                      type="text"
+                      type="hidden"
                       name="user"
                       class="form-control"
                       id="user"
@@ -90,7 +103,7 @@
                   </div>
                   <div class="col-md-6 form-group">
                     <input
-                      type="text"
+                      type="hidden"
                       name="id"
                       class="form-control"
                       id="id"

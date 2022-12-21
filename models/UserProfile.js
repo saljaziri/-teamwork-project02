@@ -7,7 +7,6 @@ const userProfileSchema = mongoose.Schema(
   {
     userImage: {
       type: String,
-      maxlength: [100, "Maximum is 100 characters"],
       default: ''
     },
 

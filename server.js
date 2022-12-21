@@ -12,7 +12,6 @@ global.__basedir = __dirname;
 global.__imagedir = "";
 
 app.use(express.static("public"));
-//app.get("/", express.static(path.join(__dirname, "./public")));
 
 const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts);
@@ -40,14 +39,14 @@ const authRoute = require("./routes/auth");
 const userProfileRoute = require("./routes/userProfile");
 const dreamClubRoute = require('./routes/dreamClubs');
 const indexRoute = require('./routes/index')
-const ClubRoute = require('./routes/clubs');
-const UserProfile = require("./models/UserProfile");
+const clubRoute = require('./routes/clubs');
+
 app.use("/", indexRoute);
 app.use("/", playerRoute);
 app.use("/", authRoute);
 app.use("/", userProfileRoute);
 app.use('/', dreamClubRoute);
-app.use('/', ClubRoute);
+app.use('/', clubRoute);
 
 
 app.set("view engine", "ejs");
@@ -65,23 +64,6 @@ mongoose.connect(
   
 );
 
-// mongoose.connection.once("open", () => {
-//   const roleJson = require("./data/role.json");
-// const countryJson = require("./data/country.json");
-// const Role = require("./models/Role");
-// const Country = require("./models/Country");
-//   Role.insertMany(roleJson, (err, result) => {
-//     if (err) {
-//     } else {
-//     }
-//   });
-
-//   Country.insertMany(countryJson, (err, result) => {
-//     if (err) {
-//     } else {
-//     }
-//   });
-// });
 
 
 

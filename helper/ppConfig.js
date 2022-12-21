@@ -9,36 +9,7 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-// exports.getUserProfile = (req, res)=>{
-//   UserProfile.exists({ user: req.user._id }, function (err, userProfile) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("Result :", userProfile); // false
-//       if (userProfile === null) {
-//         console.log("not exist");
-//         const userProfile = null;
-//         req.session.userProfile = userProfile;
-//         console.log(req.session)
-//         res.locals.userProfile = userProfile;
 
-//       } else {
-//         console.log("exists");
-//         UserProfile.findById(userProfile._id.toString())
-//         .then((userProfile)=>{
-//           req.session.userProfile = userProfile;
-//           console.log(req.session)
-//           res.locals.userProfile = userProfile;
-//         })
-//         .catch(err=>{
-//           console.log(err);
-//         })
-
-//       }
-//     }
-//   });
-//   res.redirect("/");
-// }
 
 
 

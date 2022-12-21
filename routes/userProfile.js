@@ -10,7 +10,8 @@ router.use(methodOverride('_method'));
 const isLoggedIn = require("../helper/isLoggedIn");
 
 const userProfileController = require('../controllers/userProfile');
-router.get('/userProfile/index', isLoggedIn, userProfileController.index_get);
+const isUserAdmin = require('../helper/isUserAdmin');
+router.get('/userProfile/index', isLoggedIn, isUserAdmin, userProfileController.index_get);
 router.get('/userProfile/detail', isLoggedIn,userProfileController.show_get);
 
 router.get('/userProfile/edit',isLoggedIn,userProfileController.edit_get);

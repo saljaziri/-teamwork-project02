@@ -23,10 +23,16 @@
         <div class="row mt-5">
           <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
             <form
+            enctype="multipart/form-data"
               action="/player/add"
               method="POST"
               class="php-email-form">
+              <div class="member-img text-center">
+                <img class="img-fluid col-md-4 form-group" id="playerImage" name="playerImage" src="https://via.placeholder.com/1800"/>
+                <input type="file" id="playerImageFile" name="playerImageFile" style="display: none;" />
+                </div>
               <div class="row">
+               
                 <div class="col-md-6 form-group">
                   <input
                     type="text"
@@ -37,6 +43,7 @@
                   
                   />
                 </div>
+               
                 
                   <div class="col-md-6 form-group mt-3 mt-md-0">
                     <select name="nationality" id="nationality" class="form-control">
@@ -78,18 +85,18 @@
                 </div>
                 <div class="col-md-6 form-group">
                   <input
-                    type="text"
-                    name="id"
+                    type="hidden"
+                    name="user"
                     class="form-control"
-                    id="id"
-                    placeholder="id"
+                    id="user"
+                    placeholder="user"
                     value="<%=currentUser._id%>"
                     required
                   />
                 </div>
                 <div class="col-md-6 form-group">
                   <input
-                    type="text"
+                    type="hidden"
                     name="role"
                     class="form-control"
                     id="role"

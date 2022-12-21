@@ -33,24 +33,15 @@
               </div>
               <div class="member-info">
                 <h4 id="h4"><%= dreamClub.club.name %></h4>
-                <p id="fontSize">  <img src="../img/<%= dreamClub.clubImage %>"/></p>
+                <p id="fontSize">  <img id="indexImageSize" src="../img/<%= dreamClub.dreamClubImage %>"/></p>
                 <p id="fontSize"> Player Name: <%= dreamClub.player.name %> </p>
                 <p id="fontSize"> Kit Number: <%= dreamClub.kitNumber %> </p>
                 <p id="fontSize"> Player Position: <%= dreamClub.playerPosition %> </p>
+                <p id="fontSize"> <a href="<%= dreamClub.playerVideo %>" target="_blank"> Player Video Link</a> </p>
                 <p id="fontSize"> Created At: <%= moment(dreamClub.createdAt).fromNow() %> </p>
                 <p id="fontSize"> Updated At: <%= moment(dreamClub.updatedAt).fromNow() %> </p>
                 <p id="fontSize"> created By: <%=currentUser.firstName%> <%=currentUser.lastName%> </p>
-                <div class="col-md-6 form-group">
-                    <input
-                      type="hidden"
-                      name="id"
-                      class="form-control"
-                      id="id"
-                      placeholder="id"
-                      value="<%=currentUser._id%>"
-                      required
-                    />
-                  </div>
+                
               </div>
             </div>
           </div>

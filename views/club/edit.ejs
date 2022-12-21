@@ -23,65 +23,72 @@
         <div class="row mt-5">
           <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
             <form
+            enctype="multipart/form-data"
               action="/club/update?_method=PUT"
               method="POST"
               class="php-email-form">
               <div class="row">
+
+                <div class="member-img text-center">
+                  <% if(club.clubImage =="" ) {  %>
+                    <img class="img-fluid col-md-4 form-group" id="clubImage" name="clubImage" src="https://via.placeholder.com/1800"/>
+    
+                 <% }else{ %>
+                  <img class="img-fluid col-md-4 form-group" id="clubImage" name="clubImage" src="../img/<%=club.clubImage%>" />
+                  <input type="hidden" id="previousClubImage" name="previousClubImage" value="<%=club.clubImage%>" />
+    
+                <%  }%>
+                  <input type="file" id="clubImageFile" name="clubImageFile" style="display: none;" />
+                </div>
+
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <select name="nationality" id="nationality" class="form-control">
+                      <option value="" disabled selected>Select Country</option>
+      
+                      <% nationalities.forEach(nationality =>{ %>
+                      <option <%= nationality==club.nationality ? 'selected' : ''%> value="<%=nationality%>"><%=nationality%></option>
+                      <%}) %>
+                    </select>
+                  </div>
+
                 <div class="col-md-6 form-group">
                   <input
                     type="text"
                     name="name"
                     class="form-control"
                     id="name"
+                    value="<%=club.name%>"
                     placeholder="Club Name"
                   
                   />
                 </div>
                 
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <select name="nationality" id="nationality" class="form-control">
-                      <option value="" disabled selected>Select Country</option>
-      
-                      <% nationalities.forEach(nationality =>{ %>
-                      <option value="<%=nationality%>"><%=nationality%></option>
-                      <%}) %>
-                    </select>
-                  </div>
+               
                   
+
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="image"
-                    id="image"
-                    placeholder="Club Image"
-                    required
-                  />
-                </div>
-                <div class="col-md-6 form-group">
-                  <input
-                    type="text"
-                    name="popularity"
-                    class="form-control"
-                    id="popularity"
-                    placeholder="Club Popularity from 0 to 10 rating"
-                    
-                  />
+                  <select name="popularity" id="popularity" class="form-control">
+                    <option value="" disabled selected>Select popularity</option>
+    
+                    <% popularities.forEach(popularity =>{ %>
+                    <option <%= popularity==club.popularity ? 'selected' : ''%> value="<%=popularity%>"><%=popularity%></option>
+                    <%}) %>
+                  </select>
                 </div>
                 <div class="col-md-6 form-group">
                     <input
-                      type="text"
+                      type="hidden"
                       name="user"
                       class="form-control"
                       id="user"
                       placeholder="user"
-                      value="<%=currentUser._id%>"
+                      value="<%=club.user._id%>"
                       required
                     />
                   </div>
                   <div class="col-md-6 form-group">
                     <input
-                      type="text"
+                      type="hidden"
                       name="id"
                       class="form-control"
                       id="id"

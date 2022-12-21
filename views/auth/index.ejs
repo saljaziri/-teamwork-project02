@@ -5,8 +5,8 @@
       <div class="breadcrumb-hero">
         <div class="container">
           <div class="breadcrumb-hero">
-            <h2>Dream Club</h2>
-            <p>Dream Clubs by the users </p>
+            <h2>Users</h2>
+            <p>List of Users </p>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
           <div class="col-lg-3 col-md-6">
            
             <div class="box" data-aos="fade-up">
-              <h3 id="h3"><a href="/user/detail?id=<%= user._id %>"><%= user.firstName + " "user.lastName %></a></h3>
+              <h3 id="h3"><a href="/auth/detail?id=<%= user._id %>"><%= user.firstName + " " +user.lastName %></a></h3>
               <h4><sup></sup><span> </span></h4>
               <ul>
                 <li id="li"> <%= user.emailAddress %></li>
@@ -41,20 +41,10 @@
   
                 
               </ul>
-              <div class="col-md-6 form-group">
-                <input
-                  type="hidden"
-                  name="id"
-                  class="form-control"
-                  id="id"
-                  placeholder="id"
-                  value="<%=currentUser._id%>"
-                  required
-                />
-              </div>
+          
               <div class="btn-wrap">
-                <a href="/dreamClub/edit?id=<%= dreamClub._id %>" class="btn-buy">Edit</a>
-                <a href="/dreamClub/delete?id=<%= dreamClub._id %>" class="btn-buy">Delete</a>
+                <a href="/auth/edit?id=<%= user._id %>" class="btn-buy">Edit</a>
+                <a href="/auth/delete?id=<%= user._id %>" class="btn-buy">Delete</a>
               </div>
             </div>
           </div>

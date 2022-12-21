@@ -7,9 +7,8 @@ const dreamClubSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Club'
         },
-        clubImage: {
+        dreamClubImage: {
             type: String,
-            maxlength: [100, "Maximum is 100 characters"],
             default: ''
           },
     player: 
@@ -23,7 +22,7 @@ const dreamClubSchema = mongoose.Schema({
         required: true,
         enum : playerPositions
       },
-    playerImage: String,
+    
     playerVideo: String,
     comment: String,
     user: 

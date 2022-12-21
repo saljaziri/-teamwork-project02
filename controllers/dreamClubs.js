@@ -4,11 +4,9 @@ const moment = require('moment');
 const User = require('../models/User');
 const Player = require('../models/Player');
 const playerPositions = require('../helper/playerPositionsConfig');
-const players = require('../helper/playersConfig');
-const clubs = require('../helper/clubsConfig');
+
 
 exports.dreamClub_index_get = (req, res) => {
-    
     DreamClub.find()
     .populate('player')
     .populate('user')
@@ -23,23 +21,40 @@ exports.dreamClub_index_get = (req, res) => {
 }
 
 
-exports.dreamClub_create_get = (req, res) => {
 
+
+
+
+
+exports.dreamClub_create_get = (req, res) => {
+    Player.find()
+
+    .then((players) => {
+        Club.find()
+
+        .then((clubs) => {
+            res.render('dreamClub/add', {players, playerPositions, clubs});
+
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+   
   
-    res.render('dreamClub/add', {players, playerPositions, clubs});
    
     }
 
 
 exports.dreamClub_create_post = (req, res) => {
-    console.log(req.body);
     let dreamClub = new DreamClub (req.body);
-    console.log(req.file);
     if (req.file != null) {
 
-        console.log('Im here inside');
         console.log("check image "+__imagedir + "/"+req.file.filename);
-        dreamClub.clubImage = __imagedir + "/" + req.file.filename;
+        dreamClub.dreamClubImage = __imagedir + "/" + req.file.filename;
       }
 
     dreamClub.save()
@@ -53,7 +68,6 @@ exports.dreamClub_create_post = (req, res) => {
 }
 
 exports.dreamClub_detail_get = (req, res) => {
-    console.log(req.body.id);
     DreamClub.findById(req.query.id)
     .populate('user')
     .populate('club')
@@ -68,21 +82,57 @@ exports.dreamClub_detail_get = (req, res) => {
 }
 
 exports.dreamClub_edit_get = (req, res) => {
-    DreamClub.findById(req.query.id)
-    .populate('user')
-    .populate('player')
-    .populate('club')
-    .then((dreamClub) => {
-        res.render('dreamClub/edit', {players, playerPositions, clubs, dreamClub});
-        // res.render('dreamClub/edit',{dreamClub });
+ 
+    Player.find()
+
+    .then((players) => {
+        Club.find()
+
+        .then((clubs) => {
+            DreamClub.findById(req.query.id)
+            .populate('user')
+            .populate('player')
+            .populate('club')
+            .then((dreamClub) => {
+                res.render('dreamClub/edit', {players, playerPositions, clubs, dreamClub});
+                // res.render('dreamClub/edit',{dreamClub });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.send('please try again ater');
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     })
     .catch((err) => {
         console.log(err);
-        res.send('please try again ater');
-    })
+    });
+
+
+    
 }
 
 exports.dreamClub_edit_put = (req, res) => {
+    let dreamClub = new DreamClub();
+    dreamClub = req.body;
+    if(req.file!=null){
+        if(dreamClub.dreamClubImage!=""){
+    
+          let path  =__basedir + "/public/img/" + dreamClub.previousDreamClubImage;
+          console.log(path)
+          fs.unlink(path, (err) => {
+            if (err) {
+              console.log
+            }
+        
+            
+          });
+        
+        }
+        dreamClub.dreamClubImage = __imagedir + "/" + req.file.filename;
+      }
     DreamClub.findByIdAndUpdate(req.body.id, req.body)
     .then(()=> {
         res.redirect('/dreamClub/index');
