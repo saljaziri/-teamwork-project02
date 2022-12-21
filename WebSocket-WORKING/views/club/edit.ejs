@@ -1,0 +1,120 @@
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            <h2>Edit Club</h2>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <ol>
+          <li><a href="/club/index">Clubs</a></li>
+          <li>Edit Club</li>
+        </ol>
+      </div>
+    </section>
+    <!-- End Breadcrumbs -->
+  
+    <!-- ======= Contact Section ======= -->
+    <section id="editClub" class="contact">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
+            <form
+            enctype="multipart/form-data"
+              action="/club/update?_method=PUT"
+              method="POST"
+              class="php-email-form">
+              <div class="row">
+
+                <div class="member-img text-center">
+                  <% if(club.clubImage =="" ) {  %>
+                    <img class="img-fluid col-md-4 form-group" id="clubImage" name="clubImage" src="https://via.placeholder.com/1800"/>
+    
+                 <% }else{ %>
+                  <img class="img-fluid col-md-4 form-group" id="clubImage" name="clubImage" src="../img/<%=club.clubImage%>" />
+                  <input type="hidden" id="previousClubImage" name="previousClubImage" value="<%=club.clubImage%>" />
+    
+                <%  }%>
+                  <input type="file" id="clubImageFile" name="clubImageFile" style="display: none;" />
+                </div>
+
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <select name="nationality" id="nationality" class="form-control">
+                      <option value="" disabled selected>Select Country</option>
+      
+                      <% nationalities.forEach(nationality =>{ %>
+                      <option <%= nationality==club.nationality ? 'selected' : ''%> value="<%=nationality%>"><%=nationality%></option>
+                      <%}) %>
+                    </select>
+                  </div>
+
+                <div class="col-md-6 form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="name"
+                    value="<%=club.name%>"
+                    placeholder="Club Name"
+                  
+                  />
+                </div>
+                
+               
+                  
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <select name="popularity" id="popularity" class="form-control">
+                    <option value="" disabled selected>Select popularity</option>
+    
+                    <% popularities.forEach(popularity =>{ %>
+                    <option <%= popularity==club.popularity ? 'selected' : ''%> value="<%=popularity%>"><%=popularity%></option>
+                    <%}) %>
+                  </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input
+                      type="hidden"
+                      name="user"
+                      class="form-control"
+                      id="user"
+                      placeholder="user"
+                      value="<%=club.user._id%>"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input
+                      type="hidden"
+                      name="id"
+                      class="form-control"
+                      id="id"
+                      placeholder="id"
+                      value="<%=club._id%>"
+                      required
+                    />
+                  </div>
+                  
+              </div>
+             
+  
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">
+                  Your message has been sent. Thank you!
+                </div>
+              </div>
+              <div class="text-center"><button type="submit" name="submit">Edit Club</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact Section -->
+  </main>
+  <!-- End #main -->
+  

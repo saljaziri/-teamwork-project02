@@ -1,0 +1,145 @@
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            <h2>Players</h2>
+            <p>player additions by the users </p>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="addContainer">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Players</li>
+        </ol>
+        <%if(currentUser) { %>
+      <div id="addNavbar" class="navbar">
+        <ul>
+          <li><a class="getstarted" href="/player/add">Add Player</a></li>
+        </ul>
+      </div>
+      <% }%>
+    </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="player" class="pricing">
+      <div class="container">
+       
+        <div class="row">
+            <% players.forEach(function(player){ %>
+
+          <div class="col-lg-3 col-md-6">
+           
+            <div class="box" data-aos="fade-up">
+              <h3 id="h3"><a href="/player/detail?id=<%= player._id %>"><%= player.name %></a></h3>
+              <h4><sup></sup><span> </span></h4>
+             
+              <ul>
+                <li id="li"><img id="indexImageSize" src="../img/<%= player.playerImage %>"/> </li>
+                <li id="li"> <%= player.nationality %></li>
+                <li id="li"> <%= player.playerPosition %></li>
+                <li id="li">  <%= player.kitNumber %></li>
+                <li id="li"> <%= player.trophies %></li>
+                
+              </ul>
+              
+              <div class="btn-wrap">
+                <%if(currentUser!=null){%>
+                    
+                  <%if(currentUser.role == "admin" || currentUser._id == player.user._id.toString()) { %>
+                <a href="/player/edit?id=<%= player._id %>" class="btn-buy">Edit</a>
+                <% }%>
+                  <%if(currentUser.role == "admin") { %>
+                <a href="/player/delete?id=<%= player._id %>" class="btn-buy">Delete</a>
+                <% }%>
+                <% }%>
+              </div>
+            </div>
+          </div>
+
+
+          <% }) %>
+        </div>
+       
+      </div>
+     
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Players statistics and updates</h2>
+          <p>Get the latest players news and updates</p>
+        </div>
+
+        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up">
+          <div class="col-lg-5">
+            <i class="bx bx-help-circle"></i>
+            <h4>Kylian Mbappe returned to the French capital following Les Bleus' World Cup final heartbreak, with the Paris Saint-Germain forward quickly returning to the club's training ground</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+              Kylian Mbappe has returned to training at Paris Saint-Germain after refusing a holiday following his World Cup heartbreak.
+
+And the Golden Boot winner could play against Strasbourg when Ligue 1 resumes next Wednesday (Dec 28). The France star scored three times in the World Cup final on Sunday but could not stop Lionel Messi ’s Argentina team winning a penalty shootout.
+            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-5">
+            <i class="bx bx-help-circle"></i>
+            <h4>Lionel Messi performs U-turn on future after winning World Cup with Argentina</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+              Lionel Messi is set to extend his contract at Paris Saint-Germain after winning the World Cup - after previously being on the cusp of agreeing a deal with Inter Miami.
+
+The Argentinian superstar was widely reported to be set to move to the MLS with his deal in the French capital expiring at the end of this season. But he put his club future to one side to focus on the World Cup, which he duly won in Qatar last weekend.
+            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-5">
+            <i class="bx bx-help-circle"></i>
+            <h4>Pep Guardiola hints at Erling Haaland worry after surprise World Cup claim</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+              Manchester City boss Pep Guardiola has suggested that those returning from international duty at the World Cup will be in a better state than those who didn't feature in Qatar.
+
+The reigning Premier League champions have quite the first game back as they take on long-term title rivals Liverpool at home in the fourth round of the Carabao Cup. The visit of Jurgen Klopp's men will be the first time City have kicked a ball in a competitive sense since early November.
+            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-5">
+            <i class="bx bx-help-circle"></i>
+            <h4>Cristiano Ronaldo's desperation for new club comes to light as theory emerges</h4>
+          </div>
+          <div class="col-lg-7">
+            <p>
+              Eintracht Frankfurt chief Philip Holzer believes that Cristiano Ronaldo has been offered to every club in the Champions League after revealing that his side were sounded out over a move for the Portuguese superstar.
+
+Ronaldo, 37, is currently a free agent after striking an agreement with Manchester United that enabled both parties to tear up the final six months of his lucrative Old Trafford deal. However, the veteran's next move is unclear, with various European clubs, including Sporting Lisbon and Bayern Munich, distancing themselves from the forward.
+
+Frankfurt board member Axel Hellmann has confirmed that the German outfit are the latest club who have turned down the opportunity to sign Ronaldo.
+            </p>
+          </div>
+        </div><!-- End F.A.Q Item-->
+
+       
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+  </main><!-- End #main -->
+
+ 

@@ -1,0 +1,57 @@
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            <h2>Player Details</h2>
+           
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <ol>
+          <li><a href="/player/index">player</a></li>
+          <li>details</li>
+        </ol>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+             
+              </div>
+              <div class="member-info">
+                <h4 id="h4"><%= player.name %></h4>
+                <p id="fontSize">  <img id="indexImageSize" src="../img/<%= player.playerImage %>"/></p>
+                <p id="fontSize"> Nationality: <%= player.nationality %></p>
+                <p id="fontSize"> Position: <%= player.playerPosition %> </p>
+                <p id="fontSize"> Kit Number: <%= player.kitNumber %> </p>
+                <p id="fontSize"> Trophies: <%= player.trophies %> </p>
+                <p id="fontSize"> Created At: <%= moment(player.createdAt).fromNow() %> </p>
+                <p id="fontSize"> Updated At: <%= moment(player.updatedAt).fromNow() %> </p>
+                <p id="fontSize"> Created by: <%=currentUser.firstName%> <%=currentUser.lastName%> </p>
+                
+              </div>
+            </div>
+          </div>
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+  </main><!-- End #main -->
+
+  
