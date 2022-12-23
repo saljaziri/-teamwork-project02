@@ -9,7 +9,6 @@ const port = process.env.PORT;
 const app = express();
 global.__basedir = __dirname;
 
-global.__imagedir = "";
 
 app.use(express.static("public"));
 

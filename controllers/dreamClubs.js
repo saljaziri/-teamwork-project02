@@ -4,7 +4,7 @@ const moment = require('moment');
 const User = require('../models/User');
 const Player = require('../models/Player');
 const playerPositions = require('../helper/playerPositionsConfig');
-
+imagedir = "dreamClubImage"
 
 exports.dreamClub_index_get = (req, res) => {
     DreamClub.find()
@@ -53,8 +53,8 @@ exports.dreamClub_create_post = (req, res) => {
     let dreamClub = new DreamClub (req.body);
     if (req.file != null) {
 
-        console.log("check image "+__imagedir + "/"+req.file.filename);
-        dreamClub.dreamClubImage = __imagedir + "/" + req.file.filename;
+        console.log("check image "+imagedir + "/"+req.file.filename);
+        dreamClub.dreamClubImage = imagedir + "/" + req.file.filename;
       }
 
     dreamClub.save()
@@ -131,7 +131,7 @@ exports.dreamClub_edit_put = (req, res) => {
           });
         
         }
-        dreamClub.dreamClubImage = __imagedir + "/" + req.file.filename;
+        dreamClub.dreamClubImage = imagedir + "/" + req.file.filename;
       }
     DreamClub.findByIdAndUpdate(req.body.id, req.body)
     .then(()=> {

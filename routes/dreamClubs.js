@@ -7,8 +7,7 @@ const dreamClubControl = require('../controllers/dreamClubs');
 const isLoggedIn = require("../helper/isLoggedIn");
 const isUserAdmin = require('../helper/isUserAdmin');
 
-const upload = require('../helper/imageUploader');
-__imagedir = "dreamClubImage";
+const upload = require('../helper/dreamClubImageUploader');
 
 router.get('/dreamClub/index',dreamClubControl.dreamClub_index_get);
 

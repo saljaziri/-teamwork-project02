@@ -33,7 +33,7 @@
                     <img class="img-fluid col-md-4 form-group" id="playerImage" name="playerImage" src="https://via.placeholder.com/1800"/>
     
                  <% }else{ %>
-                  <img class="img-fluid col-md-4 form-group" id="playerImage" name="playerImage" src="../img/<%=player.playerImage%>" />
+                  <img class="img-fluid col-md-4 form-group addEditImageSize" id="playerImage" name="playerImage" src="../img/<%=player.playerImage%>" />
                   <input type="hidden" id="previousPlayerImage" name="previousPlayerImage" value="<%=player.playerImage%>" />
     
                 <%  }%>
@@ -56,7 +56,7 @@
                       <option value="" disabled selected>Select Nationality</option>
       
                       <% nationalities.forEach(nationality =>{ %>
-                      <option value="<%=nationality%>"><%=nationality%></option>
+                      <option <%=player.nationality===nationality ? 'selected' : ''%> value="<%=nationality%>"><%=nationality%></option>
                       <%}) %>
                     </select>
                   </div>
@@ -65,7 +65,7 @@
                       <option value="" disabled selected>Select Position</option>
       
                       <% playerPositions.forEach(playerPosition =>{ %>
-                      <option value="<%=playerPosition%>"><%=playerPosition%></option>
+                      <option <%=player.playerPosition===playerPosition ? 'selected' : ''%> value="<%=playerPosition%>"><%=playerPosition%></option>
                       <%}) %>
                     </select>
                   </div>
@@ -97,7 +97,7 @@
                       class="form-control"
                       id="user"
                       placeholder="user"
-                      value="<%=currentUser._id%>"
+                      value="<%=player.user._id%>"
                       required
                     />
                   </div>

@@ -6,8 +6,7 @@ router.use(methodOverride('_method'));
 const clubControl = require('../controllers/clubs');
 const isUserAdmin = require("../helper/isUserAdmin");
 const isLoggedIn = require("../helper/isLoggedIn");
-const upload = require('../helper/imageUploader');
-__imagedir = "clubImage";
+const upload = require('../helper/clubImageUploader');
 router.get('/club/index', clubControl.club_index_get);
 
 router.get('/club/add',isLoggedIn, clubControl.club_create_get);

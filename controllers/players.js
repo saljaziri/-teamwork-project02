@@ -3,7 +3,7 @@ const nationalities = require('../helper/countriesConfig')
 const User = require('../models/User');
 const moment = require('moment');
 const playerPositions = require('../helper/playerPositionsConfig');
-
+imagedir = "playerImage"
 exports.player_index_get = (req,res)=>{
     
     // res.render('player/index')
@@ -30,7 +30,7 @@ exports.player_create_post = (req,res) =>{
     let player = new Player (req.body);
     if (req.file != null) {
 
-        player.playerImage = __imagedir + "/" + req.file.filename;
+        player.playerImage = imagedir + "/" + req.file.filename;
       }
     player.save()
     .then(() =>{
@@ -68,6 +68,24 @@ exports.player_edit_get = (req, res) =>{
 
 exports.player_edit_put = (req, res) =>{
     console.log(req.body.id);
+    let player = new Player();
+    player = req.body;
+    if(req.file!=null){
+        if(player.playerImage!=""){
+    
+          let path  =__basedir + "/public/img/" + player.previousPlayerImage;
+          console.log(path)
+          fs.unlink(path, (err) => {
+            if (err) {
+              console.log
+            }
+        
+            
+          });
+        
+        }
+        player.playerImage = imagedir + "/" + req.file.filename;
+      }
     Player.findByIdAndUpdate(req.body.id, req.body)
     .then(() =>{
         res.redirect('/player/index');

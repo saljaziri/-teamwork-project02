@@ -80,14 +80,15 @@ exports.edit_get = function (req, res) {
 };
 
 exports.update_put = function (req, res) {
-  let user = new User(req.body);
-
+  let user = new User();
+user = req.body;
  
   User.findByIdAndUpdate(req.body.id, user)
     .then(() => {
       res.redirect("/auth/index");
     })
     .catch((err) => {
+      console.log(err);
       res.send("Please try again later");
     });
 };

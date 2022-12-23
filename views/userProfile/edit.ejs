@@ -26,7 +26,7 @@
         <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
           <form
           enctype="multipart/form-data"
-            action="/userProfile/update"
+            action="/userProfile/update?_method=PUT"
             method="POST"
             class="php-email-form">
             <div class="member-img text-center">
@@ -34,7 +34,7 @@
                 <img class="img-fluid col-md-4 form-group" id="userImage" name="userImage" src="https://via.placeholder.com/1800"/>
 
              <% }else{ %>
-              <img class="img-fluid col-md-4 form-group" id="userImage" name="userImage" src="../img/<%=userProfile.userImage%>" />
+              <img class="img-fluid col-md-4 form-group addEditImageSize" id="userImage" name="userImage" src="../img/<%=userProfile.userImage%>" />
               <input type="hidden" id="previousUserImage" name="previousUserImage" value="<%=userProfile.userImage%>" />
 
             <%  }%>

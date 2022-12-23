@@ -53,3 +53,31 @@
     width: 90px;
     height: 90px;
 }
+
+.addEditImageSize{
+    width: 150px;
+    height:150px
+}
+
+@media only screen and (max-width: 1000px) {
+    #logoImage{
+        width: auto;
+        height: 100px;
+    }
+    
+    #header {
+        height: 100px;
+    }
+    }
+
+@media only screen and (max-width: 600px) {
+#logoImage{
+    width: auto;
+    height: 80px;
+}
+
+#header {
+    height: 80px;
+}
+}
+

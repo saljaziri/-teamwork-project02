@@ -3,6 +3,7 @@ const User = require('../models/User');
 const moment = require('moment');
 const nationalities = require('../helper/countriesConfig');
 const popularities = require("../helper/popularityConfig");
+const imagedir = "clubImage";
 
 exports.club_index_get = (req, res) => {
     
@@ -26,7 +27,7 @@ exports.club_create_post = (req, res) => {
     if (req.file != null) {
 
         
-        club.clubImage = __imagedir + "/" + req.file.filename;
+        club.clubImage = imagedir + "/" + req.file.filename;
       }
 
     club.save()
@@ -81,7 +82,7 @@ exports.club_edit_put = (req, res) => {
           });
         
         }
-        club.clubImage = __imagedir + "/" + req.file.filename;
+        club.clubImage = imagedir + "/" + req.file.filename;
       }
     Club.findByIdAndUpdate(req.body.id, req.body)
     .then(()=> {

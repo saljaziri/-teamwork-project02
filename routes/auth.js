@@ -12,7 +12,7 @@ router.get("/auth/logout", authController.logout_get);
 router.get('/auth/index', isLoggedIn, isUserAdmin, authController.index_get);
 router.get('/auth/detail', isLoggedIn, isUserAdmin, authController.show_get);
 router.get('/auth/edit', isLoggedIn, isUserAdmin, authController.edit_get);
-router.post('/auth/update', isLoggedIn,isUserAdmin,authController.update_put);
+router.put('/auth/update', isLoggedIn,isUserAdmin,authController.update_put);
 
 
 

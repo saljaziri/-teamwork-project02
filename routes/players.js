@@ -6,8 +6,7 @@ router.use(methodOverride('_method'));
 const playerControl = require('../controllers/players');
 const isLoggedIn = require("../helper/isLoggedIn");
 const isUserAdmin = require('../helper/isUserAdmin');
-const upload = require('../helper/imageUploader');
-__imagedir = "playerImage";
+const upload = require('../helper/playerImageUploader');
 
 router.get('/player/index', playerControl.player_index_get);
 router.get('/player/add',isLoggedIn, playerControl.player_create_get);

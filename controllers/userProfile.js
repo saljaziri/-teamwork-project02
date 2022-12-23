@@ -3,7 +3,7 @@ const User = require("../models/User");
 const moment = require("moment");
 const nationalities = require("../helper/countriesConfig");
 const fs = require("fs");
-
+imagedir = "user";
 exports.index_get = (req, res) => {
   UserProfile.find()
     .populate("user")
@@ -79,7 +79,7 @@ exports.update_put = function (req, res) {
       });
     
     }
-    userProfile.userImage = __imagedir + "/" + req.file.filename;
+    userProfile.userImage = imagedir + "/" + req.file.filename;
   }
   
   req.session.userProfile = userProfile;
@@ -114,7 +114,7 @@ exports.create_post = (req, res) => {
 
 
     console.log(req.file.filename);
-    userProfile.userImage = __imagedir + "/" + req.file.filename;
+    userProfile.userImage = imagedir + "/" + req.file.filename;
   }
   req.session.userProfile = userProfile;
   userProfile
