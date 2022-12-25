@@ -12,7 +12,6 @@ exports.signup_get = (req, res) => {
 };
 
 exports.signup_post = (req, res) => {
-  console.log(req.body);
   let user = new User(req.body);
   let hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -23,7 +22,6 @@ exports.signup_post = (req, res) => {
       res.redirect("/auth/signin");
     })
     .catch((err) => {
-      console.log(err);
       res.send("Please try again later.");
     });
 };
@@ -37,7 +35,6 @@ exports.index_get = (req, res) => {
       res.render("auth/index", { users, moment });
     })
     .catch((err) => {
-      console.log(err);
       res.send(err);
     });
 };
@@ -62,7 +59,6 @@ exports.show_get = function (req, res) {
       res.render("auth/detail", { user, moment });
     })
     .catch((err) => {
-      console.log(err);
       res.send("Please try again later");
     });
 };
@@ -74,7 +70,6 @@ exports.edit_get = function (req, res) {
     })
 
     .catch((err) => {
-      console.log(err);
       res.send("Please try again later");
     });
 };
@@ -88,7 +83,6 @@ user = req.body;
       res.redirect("/auth/index");
     })
     .catch((err) => {
-      console.log(err);
       res.send("Please try again later");
     });
 };

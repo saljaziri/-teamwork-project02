@@ -4,7 +4,6 @@ const moment = require('moment');
 const User = require('../models/User');
 const Player = require('../models/Player');
 const playerPositions = require('../helper/playerPositionsConfig');
-imagedir = "dreamClubImage"
 
 exports.dreamClub_index_get = (req, res) => {
     DreamClub.find()
@@ -15,7 +14,6 @@ exports.dreamClub_index_get = (req, res) => {
         res.render('dreamClub/index',{dreamClubs, moment});
     })
     .catch(err =>{
-        console.log(err);
         res.send(err);
     });
 }
@@ -37,11 +35,9 @@ exports.dreamClub_create_get = (req, res) => {
 
         })
         .catch((err) => {
-            console.log(err);
         })
     })
     .catch((err) => {
-        console.log(err);
     });
    
   
@@ -51,6 +47,7 @@ exports.dreamClub_create_get = (req, res) => {
 
 exports.dreamClub_create_post = (req, res) => {
     let dreamClub = new DreamClub (req.body);
+    
     if (req.file != null) {
 
         dreamClub.dreamClubImage = "dreamClubImage/" + req.file.filename;
@@ -61,7 +58,6 @@ exports.dreamClub_create_post = (req, res) => {
         res.redirect('/dreamClub/index');
     })
     .catch((err) => {
-        console.log(err);
         res.send('please try again later');
     })
 }
@@ -75,7 +71,6 @@ exports.dreamClub_detail_get = (req, res) => {
         res.render('dreamClub/detail', {dreamClub, moment});
     })
     .catch((err) => {
-        console.log(err);
         res.send('Please try again later');
     })
 }
@@ -97,16 +92,13 @@ exports.dreamClub_edit_get = (req, res) => {
                 // res.render('dreamClub/edit',{dreamClub });
             })
             .catch((err) => {
-                console.log(err);
                 res.send('please try again ater');
             })
         })
         .catch((err) => {
-            console.log(err);
         })
     })
     .catch((err) => {
-        console.log(err);
     });
 
 
@@ -120,10 +112,8 @@ exports.dreamClub_edit_put = (req, res) => {
         if(dreamClub.dreamClubImage!=""){
     
           let path  =__basedir + "/public/img/" + dreamClub.previousDreamClubImage;
-          console.log(path)
           fs.unlink(path, (err) => {
             if (err) {
-              console.log
             }
         
             
@@ -137,7 +127,6 @@ exports.dreamClub_edit_put = (req, res) => {
         res.redirect('/dreamClub/index');
     })
     .catch(err =>{
-        console.log(err);
         res.send('please try again later');
     })
 }
@@ -148,7 +137,6 @@ exports.dreamClub_delete_get = (req, res)=> {
         res.redirect('/dreamClub/index')
     })
     .catch(err => {
-        console.log(err);
         res.send('please try again later');
     })
 }

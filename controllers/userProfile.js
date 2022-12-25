@@ -23,26 +23,19 @@ exports.show_get = function (req, res) {
       res.render("userProfile/detail", { userProfile, moment });
     })
     .catch((err) => {
-      console.log(err)
       res.send("Please try again later");
     });
 };
 
 exports.edit_get = function (req, res) {
-  console.log(req.user);
   UserProfile.exists({ user: req.user._id }, function (err, userProfile) {
     if (err) {
-      console.log(err);
     } else {
-      console.log("Result :", userProfile); // false
       if (userProfile === null) {
-        console.log("not exist");
         const userProfile = null;
 
         res.redirect("/userProfile/add");
       } else {
-        console.log("exists");
-        console.log(userProfile._id);
         UserProfile.findById(userProfile._id.toString())
           .populate("nationality")
           .populate("user")
@@ -51,7 +44,6 @@ exports.edit_get = function (req, res) {
           })
 
           .catch((err) => {
-            console.log(err);
             res.send("Please try again later");
           });
       }
@@ -69,10 +61,8 @@ exports.update_put = function (req, res) {
     if(userProfile.userImage!=""){
 
       let path  =__basedir + "/public/img/" + userProfile.previousUserImage;
-      console.log(path)
       fs.unlink(path, (err) => {
         if (err) {
-          console.log
         }
     
         
@@ -95,11 +85,8 @@ exports.update_put = function (req, res) {
 exports.create_get = (req, res) => {
   UserProfile.exists({ user: req.user._id }, function (err, userProfile) {
     if (err) {
-      console.log(err);
     } else {
-      console.log("Result :", userProfile); // false
       if (userProfile != null) {
-        console.log("exists");
         res.redirect("/userProfile/edit");
       } else {
         res.render("userProfile/add", { nationalities });
@@ -113,7 +100,6 @@ exports.create_post = (req, res) => {
   if (req.file != null) {
 
 
-    console.log(req.file.filename);
     userProfile.userImage =  + "user/" + req.file.filename;
   }
   req.session.userProfile = userProfile;
@@ -123,13 +109,11 @@ exports.create_post = (req, res) => {
       res.redirect("/");
     })
     .catch((err) => {
-      console.log(err);
       res.send("Please try again later");
     });
 };
 
 exports.delete_get = (req, res) => {
-  console.log(req.query.id);
   UserProfile.findOneAndDelete({ _id: req.params.id })
     .then(() => {
       res.redirect("/");

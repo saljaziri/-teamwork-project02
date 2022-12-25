@@ -18,9 +18,7 @@ passport.deserializeUser(function (id, done) {
   UserProfile.exists({ user: id }, function (err, userPro) {
     let userProfile = null;
     if (err) {
-      console.log(err);
     } else {
-      console.log("Result :", userPro); // false
       if (userPro != null) {
         
         UserProfile.findById(userPro._id.toString())
@@ -30,7 +28,6 @@ passport.deserializeUser(function (id, done) {
           })
 
           .catch((err) => {
-            console.log(err);
           });
       }
     }

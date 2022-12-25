@@ -4,7 +4,6 @@ const playerPositions = require('../helper/playerPositionsConfig');
 const playerSchema = mongoose.Schema({
   playerImage: {
     type: String,
-    maxlength: [100, "Maximum is 100 characters"],
     default: ''
   },
     name: String,
