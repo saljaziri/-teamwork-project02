@@ -27,7 +27,7 @@ exports.club_create_post = (req, res) => {
     if (req.file != null) {
 
         
-        club.clubImage = imagedir + "/" + req.file.filename;
+        club.clubImage = "clubImage/" + req.file.filename;
       }
 
     club.save()
@@ -82,7 +82,7 @@ exports.club_edit_put = (req, res) => {
           });
         
         }
-        club.clubImage = imagedir + "/" + req.file.filename;
+        club.clubImage = "clubImage/" + req.file.filename;
       }
     Club.findByIdAndUpdate(req.body.id, req.body)
     .then(()=> {

@@ -30,7 +30,7 @@ exports.player_create_post = (req,res) =>{
     let player = new Player (req.body);
     if (req.file != null) {
 
-        player.playerImage = imagedir + "/" + req.file.filename;
+        player.playerImage = "  playerImage/" + req.file.filename;
       }
     player.save()
     .then(() =>{
@@ -84,7 +84,7 @@ exports.player_edit_put = (req, res) =>{
           });
         
         }
-        player.playerImage = imagedir + "/" + req.file.filename;
+        player.playerImage = "playerImage/" + req.file.filename;
       }
     Player.findByIdAndUpdate(req.body.id, req.body)
     .then(() =>{

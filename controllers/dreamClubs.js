@@ -53,8 +53,7 @@ exports.dreamClub_create_post = (req, res) => {
     let dreamClub = new DreamClub (req.body);
     if (req.file != null) {
 
-        console.log("check image "+imagedir + "/"+req.file.filename);
-        dreamClub.dreamClubImage = imagedir + "/" + req.file.filename;
+        dreamClub.dreamClubImage = "dreamClubImage/" + req.file.filename;
       }
 
     dreamClub.save()
@@ -131,7 +130,7 @@ exports.dreamClub_edit_put = (req, res) => {
           });
         
         }
-        dreamClub.dreamClubImage = imagedir + "/" + req.file.filename;
+        dreamClub.dreamClubImage = "dreamClubImage/" + req.file.filename;
       }
     DreamClub.findByIdAndUpdate(req.body.id, req.body)
     .then(()=> {

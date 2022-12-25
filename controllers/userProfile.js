@@ -79,7 +79,7 @@ exports.update_put = function (req, res) {
       });
     
     }
-    userProfile.userImage = imagedir + "/" + req.file.filename;
+    userProfile.userImage = "user/" + req.file.filename;
   }
   
   req.session.userProfile = userProfile;
@@ -114,7 +114,7 @@ exports.create_post = (req, res) => {
 
 
     console.log(req.file.filename);
-    userProfile.userImage = imagedir + "/" + req.file.filename;
+    userProfile.userImage =  + "user/" + req.file.filename;
   }
   req.session.userProfile = userProfile;
   userProfile
